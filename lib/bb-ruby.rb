@@ -163,7 +163,7 @@ module BBRuby
       '[img size=96x96]http://www.google.com/intl/en_ALL/images/logo.gif[/img]',
       :image],
     'Image (Alternative)' => [
-      /\[img=([^\[\]].*?)\.(#{@@imageformats})\]/im,
+      /\[img=([^\[\]].*?)\]/im,
       '<img src="\1.\2" alt="" />',
       'Display an image (alternative format)',
       '[img=http://myimage.com/logo.gif]',
@@ -175,7 +175,7 @@ module BBRuby
       '[img align=right]http://catsweekly.com/crazycat.jpg[/img]',
       :image],
     'Image' => [
-      /\[img(:.+)?\]([^\[\]].*?)\.(#{@@imageformats})\[\/img\1?\]/im,
+      /\[img(:.+)?\]([^\[\]].*?)\[\/img\1?\]/im,
       '<img src="\2.\3" alt="" />',
       'Display an image',
       'Check out this crazy cat: [img]http://catsweekly.com/crazycat.jpg[/img]',
