@@ -164,7 +164,7 @@ module BBRuby
       :image],
     'Image (Alternative)' => [
       /\[img=([^\[\]].*?)\]/im,
-      '<img src="\1.\2" alt="" />',
+      '<img src="\1" alt="" />',
       'Display an image (alternative format)',
       '[img=http://myimage.com/logo.gif]',
       :image],
@@ -176,7 +176,7 @@ module BBRuby
       :image],
     'Image' => [
       /\[img(:.+)?\]([^\[\]].*?)\[\/img\1?\]/im,
-      '<img src="\2.\3" alt="" />',
+      '<img src="\2" alt="" />',
       'Display an image',
       'Check out this crazy cat: [img]http://catsweekly.com/crazycat.jpg[/img]',
       :image],
