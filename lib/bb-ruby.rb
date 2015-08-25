@@ -50,7 +50,7 @@ module BBRuby
       :code],
     'Size' => [
       /\[size=#{@@quote_matcher}(.*?)\1\](.*?)\[\/size\]/im,
-      '<span style="font-size: \2px;">\3</span>',
+      '<span style="font-size: \2;">\3</span>',
       'Change text size',
       '[size=20]Here is some larger text[/size]',
       :size],
