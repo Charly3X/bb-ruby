@@ -6,7 +6,7 @@ module BBRuby
   @@tags = {
     # tag name => [regex, replace, description, example, enable/disable symbol]
     'Bold' => [
-      /\[b(:.*)?\](.*?)\[\/b\1?\]/mi,
+      /\[b(:.*)?\](.*?)(\[\/b\1?\]|$)/mi,
       '<strong>\2</strong>', #Proc alternative for example: lambda{ |e| "<strong>#{e[2]}</strong>" }
       'Embolden text',
       'Look [b]here[/b]',
@@ -339,15 +339,31 @@ module BBRuby
       when :disable
         # this works nicely because the default is disable and the default set of tags is [] (so none disabled) :)
         tags_definition.each_value do |t|
-          gsub!(text, t[0], t[1]) unless tags.include?( t[4] )
+          unless t[5]
+            gsub!(text, t[0], t[1]) unless tags.include?( t[4] )
+          else	    	    
+            while text.gsub!(t[0], custom_proc(text, t)); end
+          end
         end
       end
 
       text
     end
 
+    def custom_proc (text, t)      
+      scan_data = text.scan(t[0])      
+      new = t[1].dup
+      if scan_data[0]
+	      scan_data = t[5].call(scan_data[0])      	
+	      scan_data.each_with_index do |s, index|		
+	        new.gsub!("\\#{index+1}", s)	
+  	    end	      	
+      end	
+      new
+    end
+
     def gsub!(text, pattern, replacement)
-      if replacement.class == String
+      if replacement.class == String	
         # just replace if replacement is String
         while text.gsub!( pattern, replacement ); end
       else
