@@ -144,8 +144,10 @@ module BBRuby
       'Maybe try looking on [url]http://google.com[/url]',
       :link],
     'Link (Automatic)' => [
-      %r{(\A|\s)(https?://[^\s<]+)},
-      ' <a href="\2">\2</a>',
+      #/(\A|\s|\/>)(https?:\/\/[^\s<]+)/,
+      #/(?<!\[url=)(https?:\/\/[^\s<\]\[]+)(?!\S*<\/a>)/,
+      /(?<!\[url=|'|"|&quot;|&apos;|\[url\])(https?:\/\/[^<\]\[]++)(?!\S*<\/a>)/,
+      ' <a href="\1">\1</a>',
       'Hyperlink (automatic)',
       'Maybe try looking on http://www.google.com',
       :link],
