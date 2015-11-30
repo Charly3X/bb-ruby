@@ -321,11 +321,11 @@ module BBRuby
 
       # escape "<, >, &" and quotes to remove any html
       if escape_html
-        #text.gsub!( '&', '&amp;' )
+        text.gsub!( '&', '&amp;' )
         #text.gsub!( '<', '&lt;' )
         #text.gsub!( '>', '&gt;' )
-        #text.gsub!( '"', '&quot;' )
-        #text.gsub!( "'", '&apos;' )
+        text.gsub!( '"', '&quot;' )
+        text.gsub!( "'", '&apos;' )
       end
 
       tags_definition = @@tags.merge(tags_alternative_definition)
