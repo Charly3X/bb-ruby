@@ -146,7 +146,7 @@ module BBRuby
     'Link (Automatic)' => [
       #/(\A|\s|\/>)(https?:\/\/[^\s<]+)/,
       #/(?<!\[url=)(https?:\/\/[^\s<\]\[]+)(?!\S*<\/a>)/,
-      /(?<!\[url=|'|"|&quot;|&apos;|\[iurl\]|\[url\])(https?:\/\/[^<\]\[]++)(?!\S*<\/a>)/,
+      /(?<!\[url=|\[img\]|'|"|&quot;|&apos;|\[iurl\]|\[url\])(https?:\/\/[^<\]\[]++)(?!\S*<\/a>)/im,
       ' <a href="\1">\1</a>',
       'Hyperlink (automatic)',
       'Maybe try looking on http://www.google.com',
